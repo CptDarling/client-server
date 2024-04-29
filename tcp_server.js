@@ -18,12 +18,12 @@ server.listen(port, function () {
 //the client handling callback
 function onClientConnection(sock) {
   //Log when a client connnects.
-  console.log(`${sock.remoteAddress}:${sock.remotePort} Connected`);
+  console.log(`SERVER -> ${sock.remoteAddress}:${sock.remotePort} Connected`);
 
   //Handle the client data.
   sock.on('data', function (data) {
     //Log data received from the client
-    console.log(`>> data received : ${data} `);
+    console.log(`SERVER -> >> data received : ${data} `);
 
     //prepare and send a response to the client
     let serverResp = "Hello from the server"
@@ -35,11 +35,11 @@ function onClientConnection(sock) {
 
   //Handle when client connection is closed
   sock.on('close', function () {
-    console.log(`${sock.remoteAddress}:${sock.remotePort} Connection closed`);
+    console.log(`SERVER -> ${sock.remoteAddress}:${sock.remotePort} Connection closed`);
   });
 
   //Handle Client connection error.
   sock.on('error', function (error) {
-    console.error(`${sock.remoteAddress}:${sock.remotePort} Connection Error ${error}`);
+    console.error(`SERVER -> ${sock.remoteAddress}:${sock.remotePort} Connection Error ${error}`);
   });
 };
